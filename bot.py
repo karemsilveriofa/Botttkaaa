@@ -111,4 +111,8 @@ def monitorar():
 
         time.sleep(30)
 
+# === FUNÇÃO DE INÍCIO PADRÃO ===
 def start():
+    print("✅ Bot iniciado com sucesso.")
+    monitorar()
+    
