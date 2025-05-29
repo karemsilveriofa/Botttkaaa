@@ -115,4 +115,3 @@ def monitorar():
 def start():
     print("✅ Bot iniciado com sucesso.")
     monitorar()
-    
