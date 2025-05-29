@@ -2,6 +2,7 @@ import time
 import requests
 from telegram import Bot
 from datetime import datetime, timedelta
+import threading
 
 # === CONFIGURAÇÕES ===
 API_KEY = "c95f42c34f934f91938f91e5cc8604a6"
@@ -27,7 +28,7 @@ def bot_ativo():
     except:
         return True
 
-# === OBTER HORÁRIO DA EXNOVA (usando UTC padrão da API) ===
+# === OBTER HORÁRIO UTC ATUAL ===
 def obter_horario_exnova():
     try:
         response = requests.get("http://worldtimeapi.org/api/timezone/Etc/UTC")
@@ -71,7 +72,7 @@ def enviar_sinal(mensagem):
     except Exception as e:
         print("Erro ao enviar:", e)
 
-# === MONITORAR ATIVO ===
+# === MONITORAMENTO ===
 def monitorar():
     global preco_anterior
     while True:
@@ -111,7 +112,9 @@ def monitorar():
 
         time.sleep(30)
 
-# === FUNÇÃO DE INÍCIO PADRÃO ===
-def start():
-    print("✅ Bot iniciado com sucesso.")
-    monitorar()
+# === INICIAR THREAD DE MONITORAMENTO ===
+def iniciar_thread():
+    t = threading.Thread(target=monitorar)
+    t.daemon = True
+    t.start()
+    
