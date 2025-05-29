@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import bot  # ⬅️ Adicione isso aqui para importar o objeto `bot`
 
 app = Flask(__name__)
 
