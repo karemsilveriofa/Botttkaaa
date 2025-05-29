@@ -4,21 +4,16 @@
     <title>Painel do Bot</title>
 </head>
 <body>
-    <h1>💹 Painel do Bot</h1>
-    <form method="post">
-        <label>Ativo:</label>
-        <input name="ativo" value="{{ ativo }}" />
+    <h1>Bot de Sinais</h1>
+    <form method="POST">
+        <label for="ativo">Ativo:</label>
+        <input type="text" id="ativo" name="ativo" value="{{ ativo }}">
         <br><br>
         <label>Status:</label>
-        <select name="status">
-            <option value="ON" {% if status == "ON" %}selected{% endif %}>ON</option>
-            <option value="OFF" {% if status == "OFF" %}selected{% endif %}>OFF</option>
-        </select>
+        <input type="checkbox" name="status" {% if status %}checked{% endif %}> Ligar
         <br><br>
         <button type="submit">Salvar</button>
     </form>
-    <hr>
-    <p>Ativo atual: <strong>{{ ativo }}</strong></p>
-    <p>Status do bot: <strong>{{ status }}</strong></p>
+    <p>Status atual: <strong>{{ 'Ligado' if status else 'Desligado' }}</strong> para o ativo <strong>{{ ativo }}</strong></p>
 </body>
 </html>
